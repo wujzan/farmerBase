@@ -1,0 +1,45 @@
+<%- include('_layouts/header'); -%>
+
+<% if(bookmarks.length){ %>
+    <h1 class="page-title">我的最愛</h1>
+    <br>
+    <br>
+    <table class="table table-striped alignmiddle">
+        <tr>            
+            <th>分類</th>
+            <th>文章標題</th>           
+            <th>刪除</th>            
+        </tr>
+
+        <% bookmarks.forEach(function(bookmark,index){ %>
+            <% if(categors[index] !== "notFound"){ %>
+                <tr>
+                    <td><%= categors[index] %></td>
+                    <td><a class="vd" href="/articles/<%= categors[index] %>/<%= bookmark %>"><%= bookmark %></a></td>
+                    <td>                   
+                        <a href="/favorite/update/<%= bookmark %>?index=<%= index %>&action=delete">刪除</a>&nbsp;
+                    </td>                
+                </tr> 
+            <% } %>          
+        <% }); %>
+        
+        <tr>
+            <td colspan="3" align="right">
+                <a class="clear btn btn-danger" href="/favorite/clear">批量操作</a>
+            </td>
+        </tr>
+    </table>
+<% }else{ %>
+    <h3 class="text-center">您的最愛目前是空的!</h3>
+<% } %>
+
+<script>    
+    $(function() {
+        $('a.clear').on('click',function(){
+            if(!confirm('您確定要進行批量操作?'))
+                return false;
+        });        
+    });
+</script>
+
+<%- include('_layouts/footer'); -%>

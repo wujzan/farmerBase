@@ -1,0 +1,24 @@
+</div>
+</div>
+</div><!-- /.container -->
+<br><br><br>
+<hr>
+
+<div class="footerPages text-center">
+    <% pages.forEach(function(page){ %>
+        <% if(page.slug=="home" ){ %>
+            <li style="display : inline-block"><a href="/"><%= page.title %></a></li>
+        <% }else{ %>
+            <li style="display : inline-block"><a href="/<%= page.slug %>"><%= page.title %></a></li>
+        <% } %>
+    <% }); %>
+    
+</div>
+
+<p class="text-center">Copyright &copy; Farmer's Base 小農基地</p>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

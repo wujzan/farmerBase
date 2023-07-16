@@ -1,0 +1,95 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">新增文章</h2>
+<a href="/admin/articles" class="btn btn-primary">Back回到刊登管理</a>
+<br><br>
+
+<form method="post" action="/admin/articles/add-article" enctype="multipart/form-data">
+    
+    <div class="form-group">
+        <label for="">名稱</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    
+    <div class="form-group">
+        <label for="">描述</label>
+        <textarea name="desc" class="form-control" id="ta" cols="30" rows="10" placeholder="Description"><%= desc %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="">刊登分類</label>
+        <select name="category" class="form-control">
+            <% categories.forEach(function(cat){ %>
+                <option value="<%= cat.slug %>"><%= cat.title %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="">地點縣市</label>
+        <select name="city" class="form-control">
+            <option value="台北市">台北市</option>
+            <option value="新北市">新北市</option>
+            <option value="基隆市">基隆市</option>
+            <option value="桃園市">桃園市</option>
+            <option value="新竹市">新竹市</option>
+            <option value="新竹縣">新竹縣</option>
+            <option value="苗栗縣">苗栗縣</option>
+            <option value="台中市">台中市</option>
+            <option value="彰化縣">彰化縣</option>
+            <option value="南投縣">南投縣</option>
+            <option value="雲林縣">雲林縣</option>
+            <option value="嘉義市">嘉義市</option>
+            <option value="嘉義縣">嘉義縣</option>
+            <option value="台南市">台南市</option>
+            <option value="高雄市">高雄市</option>
+            <option value="屏東縣">屏東縣</option>
+            <option value="台東縣">台東縣</option>
+            <option value="花蓮縣">花蓮縣</option>
+            <option value="宜蘭縣">宜蘭縣</option>
+            <option value="澎湖縣">澎湖縣</option>
+            <option value="金門縣">金門縣</option>
+            <option value="連江縣">連江縣</option>
+            
+            <option value="其他">其他</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="">圖片</label>
+        <input type="file" class="form-control" name="image" id="img" accept=".jpg, .jpeg, .png">
+        <img src="#" id="imgPreview" alt="">
+    </div>
+    
+    <button class="btn btn-default">提交</button>
+</form>
+
+<script>
+    //Preview image
+    function readURL(input){
+        /*裡面的input 就是我們丟進去的this，也就是<input type="file">，
+        當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+        會被放在input.files裡面，而且是一個Array(input若寫成<input type="file" multiple>是可複選的)*/
+
+        /*先看有沒有檔案，因為單選的關係，所以有檔案一定是在第0個
+        在if-else中如果碰到NULL就會自動判斷成false，如果 A&&B 中的前方的A已經是NULL的話，B並不會被執行*/
+
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+
+            reader.onload = function(e){
+                $("#imgPreview").attr('src',e.target.result).width(100).height(100);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function(){
+        //當檔案發生改變時
+        readURL(this); //this代表<input id="img">
+    });
+
+</script>
+
+<%- include('../_layouts/adminfooter') %>

@@ -1,0 +1,18 @@
+<%- include('_layouts/header'); -%>
+
+<div class="row products">
+    <% articles.forEach(function(a){ %>
+        <div class="col-xs-12 col-md-4 p">
+            <a class="pa" href="/articles/<%= a.category %>/<%= a.slug %>">
+                <img class="pimage" src="/product_images/<%= a.id %>/<%= a.image %>" alt="">
+            </a>
+            <h3><%= a.title %></h3>
+            <h4>
+                <span  class="label label-default"><%= a.city %></span>
+                <a class="vd" href="/articles/<%= a.category %>/<%= a.slug %>">&nbsp;詳情...</a>
+            </h4>
+        </div>
+    <% }); %>
+</div>
+
+<%- include('_layouts/footer'); -%>

@@ -1,0 +1,43 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">刊登管理</h2>
+<a href="/admin/articles/" class="btn btn-primary"><span class="fa-solid fa-rotate">&nbsp;</span>重新整理</a>
+<a href="/admin/articles/add-article" class="btn btn-primary "><span class="fa-solid fa-square-plus">&nbsp;</span>新增文章</a>
+<br><br>
+
+<% if(count>0){ %>
+    <table class="table table-striped alignmiddle">
+        <thead>
+            <tr class="home">
+                <th>分類</th>
+                <th>農場名稱</th>
+                <th>縣市</th>                               
+                <th>圖片</th>
+                <th>修改</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(function(article){ %>
+                <tr>
+                    <td><%= article.category %></td>
+                    <td><%= article.title %></td>
+                    <th><%= article.city %></th>
+                    <td>
+                        <% if(article.image == ""){ %>
+                            <img id="noimage" src="/images/noimage.png">
+                        <% }else{ %>
+                            <img id="noimage" src="/product_images/<%= article._id %>/<%= article.image %>">                
+                        <% } %>
+                    </td>
+                    <td><a href="/admin/articles/edit-article/<%= article._id %>">Edit</a></td>
+                    <td><a class="confirmDeletion" href="/admin/articles/delete-article/<%= article._id %>">Delete</a></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% }else{ %>
+    <h3 class="text-center">目前沒有刊登項目.</h3>
+<% } %>
+
+<%- include('../_layouts/adminfooter') %>

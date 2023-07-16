@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin後台管理</title>
+
+    <!-- styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/adminstyle.css">
+
+    <!-- font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- icons: Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- navbar -->
+    <nav class="navbar1">
+      <h4><a class="navbar-brand" href="/" target="_blank">Farmer's Base 後台管理</a></h4>
+      <div class="profile">
+          <ul class="nav navbar-nav">
+            <li ><a class="fa-solid fa-right-from-bracket" href="/users/logout">登出</a></li>
+          </ul>
+      </div>
+    </nav>
+  
+    <!-- sidebar -->
+    <input type="checkbox" id="toggle">
+    <label class="side-toggle" for="toggle"><span class="fas fa-bars"></span></label>
+
+    <div class="sidebar">
+        <!-- <div class="sidebar-menu">
+            <span class="fa-solid fa-chart-pie"></span><p>Overview</p>
+        </div> -->
+
+        <div class="sidebar-menu" id="members" onclick="location.href='/admin/members';">         
+            <span class="fa-solid fa-users-gear"></span><p>會員管理</p>
+        </div>
+
+        <div class="sidebar-menu" id="categories" onclick="location.href='/admin/categories';">
+            <span class="fa-solid fa-folder-tree"></span><p>刊登分類</p>
+        </div>
+
+        <div class="sidebar-menu" id="articles" onclick="location.href='/admin/articles';">
+            <span class="fa-solid fa-pen-to-square"></span><p>刊登管理</p>
+        </div>
+        
+        <div class="sidebar-menu" id="pages" onclick="location.href='/admin/pages';">
+            <span class="fa-solid fa-file-code"></span><p>頁面管理</p>
+        </div>
+
+        <!-- <div class="sidebar-menu">
+            <span class="fas fa-cog"></span><p>Setting</p>
+        </div> -->
+    </div>
+  
+
+
+    <!-- main dashboard -->
+    <main>
+
+      <div class="container">
+        <%- messages('messages', locals) %>
+
+        <% if(errors) { %>
+          <% errors.forEach(function(error) { %>
+          <div class="alert alert-danger">
+            <%= error.msg %>
+          </div>
+          <% }); %>
+        <% } %>
+
+
+        <div class="dashboard-conatiner">

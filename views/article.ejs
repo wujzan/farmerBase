@@ -1,0 +1,45 @@
+<%- include('_layouts/header'); -%>
+
+<div class="row">
+    <h1 class="page-header"><%= a.title %></h1>
+
+    <div class="col-xs-12 col-md-5">
+        <img class="spi" src="/product_images/<%= a.id %>/<%= a.image %>" alt="">
+        <br>
+    </div>
+    <div class="col-xs-12 col-md-7">
+        <p><%- a.desc %></p>
+        
+
+        <!-- 社群分享按鈕 --> 
+        <div id="sharing">
+            <!-- <script>console.log('location.href: '+location.href);</script> -->
+            
+            <!-- LineShare -->
+            <div class="line-it-button" data-lang="zh_Hant" data-type="share-a" data-ver="3" data-url="" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+            <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+        </div>
+        
+        
+        <% if(loggedIn){ %>
+            <p><a href="/favorite/add/<%= a.slug %>">加入我的最愛</a></p>
+        <% }else{ %>            
+            <p>您必須<a href="/users/login">登入</a>才能進行操作</p>
+        <% } %>
+    </div>
+    <div class="col-xs-12">
+        <ul class="gallery">
+            <% galleryImages.forEach(function(image){ %>
+                <% if(image!="thumbs"){ %>
+                    <li>
+                        <a data-fancybox="gallery" href="/product_images/<%= a.id %>/gallery/<%= image %>">
+                            <img src="/product_images/<%= a.id %>/gallery/thumbs/<%= image %>" alt="">&nbsp;
+                        </a>
+                    </li>
+                <% } %>
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<%- include('_layouts/footer'); -%>

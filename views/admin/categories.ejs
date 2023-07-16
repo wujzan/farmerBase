@@ -1,0 +1,29 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">刊登分類</h2>
+<a href="/admin/categories/" class="btn btn-primary"><span class="fa-solid fa-rotate">&nbsp;</span>重新整理</a>
+<a href="/admin/categories/add-category" class="btn btn-primary"><span class="fa-solid fa-square-plus">&nbsp;</span>新增分類</a>
+<br><br>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>分類名稱</th>
+            <th>修改</th>
+            <th>刪除</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categories.forEach(function(cat){ %>
+        <tr>
+            <td><%= cat.title %></td>
+            <td><a href="/admin/categories/edit-category/<%= cat._id %>">Edit</a></td>
+            <td><a class="confirmDeletion" href="/admin/categories/delete-category/<%= cat._id %>">Delete</a></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+
+<%- include('../_layouts/adminfooter') %>

@@ -1,0 +1,27 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">增加新的頁面</h2>
+<a href="/admin/pages" class="btn btn-primary">Back返回頁面管理</a>
+<br><br>
+
+<form method="post" action="/admin/pages/add-page">
+    
+    <div class="form-group">
+        <label for="">頁面名稱</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">
+    </div>
+    
+    <div class="form-group">
+        <label for="">Slug</label>
+        <input type="text" class="form-control" name="slug" value="<%= slug %>" placeholder="Slug">
+    </div>
+    
+    <div class="form-group">
+        <label for="">內容</label>
+        <textarea name="content" class="form-control" id="ta" cols="30" rows="10" placeholder="Content"><%= content %></textarea>
+    </div>
+    
+    <button class="btn btn-default">提交</button>
+</form>
+
+<%- include('../_layouts/adminfooter') %>

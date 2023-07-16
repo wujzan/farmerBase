@@ -1,0 +1,48 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">會員管理</h2>
+<a href="/admin/members/" class="btn btn-primary"><span class="fa-solid fa-rotate">&nbsp;</span>重新整理</a>
+<br><br>
+
+<% if(count>0){ %>
+    <table class="table table-striped alignmiddle">
+        <thead>
+            <tr class="home">
+                <th>權限</th>
+
+                <th>帳號ID</th>
+                <th>E-mail</th>
+                <th>姓名</th>
+                <th>電話</th>
+                <th>地址</th>
+                <th>修改</th>
+                <th>刪除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user){ %>
+                <tr>
+                    <td>
+                        <% if(user.admin==1){ %>
+                            <h style="color:red">admin</h>
+                        <% }else{ %>
+                            <h style="color:gray">general</h>                            
+                        <% } %>
+                    </td>
+
+                    <td><%= user.username %></td>                    
+                    <td><%= user.email %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.phone %></td>
+                    <td><%= user.address %></td>
+                    <td><a href="/admin/members/edit-member/<%= user._id %>">Edit</a></td>
+                    <td><a class="confirmDeletion" href="/admin/members/delete-member/<%= user._id %>">Delete</a></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% }else{ %>
+    <h3 class="text-center">目前沒有會員.</h3>
+<% } %>
+
+<%- include('../_layouts/adminfooter') %>
